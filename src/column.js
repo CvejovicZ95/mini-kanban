@@ -17,6 +17,10 @@ export function renderColumn(column) {
   });
   columnSection.appendChild(cardsContainer);
 
+  const separator = document.createElement('hr');
+  separator.classList.add('card-separator');
+  columnSection.appendChild(separator);
+
   const addInput = document.createElement('input');
   addInput.type = 'text';
   addInput.placeholder = '+ Add card';
