@@ -15,7 +15,7 @@ header {
   align-items: center;
   padding: 1rem 2rem;
   background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -68,16 +68,17 @@ header button:hover {
   padding: 0.75rem 1rem;
   margin-bottom: 0.75rem;
   border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   cursor: grab;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.card p {
-  margin: 0;
+.card p,
+.card .edit-input {
   flex: 1;
+  margin: 0;
 }
 
 .card button {
@@ -100,6 +101,14 @@ header button:hover {
   background-color: #e0a800;
 }
 
+.card button.edit-btn.save {
+  background-color: #4CAF50;
+}
+
+.card button.edit-btn.save:hover {
+  background-color: #45a049;
+}
+
 .card button.delete-btn:hover {
   background-color: #c82333;
 }
@@ -108,14 +117,48 @@ header button:hover {
   padding: 0.5rem;
   border-radius: 4px;
   border: 1px solid #ccc;
-  margin-top: auto; 
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.add-card-input:hover {
+  border-color: #28a745;
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+}
+
+
+.add-card-input:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+  outline: none;
+}
+
+.card .edit-input {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  flex: 1;
+  transition: all 0.2s ease;
+}
+
+.card .edit-input:hover {
+  border-color: #e0a800;
+  box-shadow: 0 0 5px rgba(224, 168, 0, 0.3);
+}
+
+.card .edit-input:focus {
+  border-color: #ffc107;
+  box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+  outline: none;
 }
 
 footer {
   padding: 1rem;
   text-align: center;
   background-color: #ffffff;
-  box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
   font-size: 0.9rem;
   color: #555;
 }
