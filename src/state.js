@@ -1,3 +1,6 @@
+import { renderBoard } from './board.js';
+import { generateId } from './utils.js';
+
 const defaultState = {
   columns: [
     { id: 'todo', title: 'To Do', items: [] },
@@ -44,10 +47,6 @@ export function getState() {
   return JSON.parse(JSON.stringify(state));
 }
 
-function generateId() {
-  return '_' + Math.random().toString(36).substr(2, 9);
-}
-
 export function addCard(columnId, title) {
   const column = state.columns.find(c => c.id === columnId);
   if (!column) return;
@@ -60,4 +59,26 @@ export function addCard(columnId, title) {
   column.items.push(newCard);
   saveState();
   updateListeners();
+}
+
+export function deleteCard(cardId, columnId) {
+  const column = state.columns.find(column => column.id === columnId);
+  if (!column) return; 
+
+  column.items = column.items.filter(card => card.id !== cardId);
+
+  saveState();
+  renderBoard();
+}
+
+export function updateCard(cardId, newTitle) {
+  state.columns.forEach(column => {
+    const cardToUpdate = column.items.find(card => card.id === cardId);
+    if (cardToUpdate) {
+      cardToUpdate.title = newTitle;
+    }
+  });
+
+  saveState();
+  renderBoard();
 }
