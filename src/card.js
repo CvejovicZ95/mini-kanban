@@ -1,12 +1,25 @@
 import { deleteCard, updateCard } from './state.js';
 
-export function renderCard(card) {
+export const renderCard = ({ id, title: cardTitle }) => {
   const cardArticle = document.createElement('article');
   cardArticle.classList.add('card');
-  cardArticle.dataset.cardId = card.id;
+  cardArticle.dataset.cardId = id;
+  cardArticle.setAttribute('draggable', 'true');
+
+  cardArticle.addEventListener('dragstart', (e) => {
+    e.dataTransfer.setData('text/plain', JSON.stringify({
+      cardId: id,
+      fromColumnId: cardArticle.closest('.column').dataset.columnId
+    }));
+    cardArticle.classList.add('dragging');
+  });
+
+  cardArticle.addEventListener('dragend', () => {
+    cardArticle.classList.remove('dragging');
+  });
 
   const titleElement = document.createElement('p');
-  titleElement.textContent = card.title || 'New Card';
+  titleElement.textContent = cardTitle || 'New Card';
   cardArticle.appendChild(titleElement);
 
   const editBtn = document.createElement('button');
@@ -22,7 +35,7 @@ export function renderCard(card) {
   deleteBtn.addEventListener('click', () => {
     const columnSection = cardArticle.closest('.column');
     if (!columnSection) return;
-    deleteCard(card.id, columnSection.dataset.columnId);
+    deleteCard(id, columnSection.dataset.columnId);
   });
 
   editBtn.addEventListener('click', () => {
@@ -37,14 +50,13 @@ export function renderCard(card) {
       cardArticle.replaceChild(input, titleElement);
 
       deleteBtn.style.display = 'none';
-
       input.focus();
       editBtn.textContent = 'Save';
       editBtn.classList.add('save');
 
       const finishEdit = () => {
-        if (input.value.trim() !== '') {
-          updateCard(card.id, input.value.trim());
+        if (input.value.trim()) {
+          updateCard(id, input.value.trim());
         } else {
           cardArticle.replaceChild(titleElement, input);
         }
@@ -63,11 +75,10 @@ export function renderCard(card) {
       });
 
       input.addEventListener('blur', finishEdit);
-
-    } else if (editBtn.textContent === 'Save') {
+    } else {
       const input = cardArticle.querySelector('.edit-input');
       if (input) {
-        updateCard(card.id, input.value.trim());
+        updateCard(id, input.value.trim());
         cardArticle.replaceChild(titleElement, input);
       }
       editBtn.textContent = 'Edit';
@@ -75,6 +86,5 @@ export function renderCard(card) {
     }
   });
 
-
   return cardArticle;
-}
+};
