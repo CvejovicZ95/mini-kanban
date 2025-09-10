@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mini Kanban</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header>
     <h1>Mini Kanban Board</h1>
@@ -14,10 +16,21 @@
 
   <div id="app"></div>
 
-   <footer>
+  <section class="instructions">
+  <p>
+    ➕ Add a card using the <em>"Add card"</em> field.<br>
+    ✏️ Click <em>Edit</em> to change the title (Enter = save, Esc = cancel).<br>
+    🗑️ Click <em>Delete</em> to remove the card.<br>
+    🖱️ Drag a card to another column to move it.
+  </p>
+</section>
+
+
+  <footer>
     <p>&copy; 2025 Zoran Cvejovic. All rights reserved.</p>
   </footer>
 
   <script type="module" src="main.js"></script>
 </body>
+
 </html>

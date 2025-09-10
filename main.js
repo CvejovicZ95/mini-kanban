@@ -1,18 +1,14 @@
 import { initState, onStateChange, resetState } from './src/state.js';
 import { renderBoard } from './src/board.js';
 
-function initApp() {
+const initApp = () => {
   initState();
-
   renderBoard();
 
-  const resetBtn = document.getElementById('resetBtn');
-  resetBtn.addEventListener('click', () => {
-    resetState();
-    renderBoard();
-  });
+  document.getElementById('resetBtn')
+    .addEventListener('click', () => resetState());
 
   onStateChange(renderBoard);
-}
+};
 
 initApp();

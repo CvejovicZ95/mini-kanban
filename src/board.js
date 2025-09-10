@@ -1,14 +1,14 @@
 import { getState } from './state.js';
 import { renderColumn } from './column.js';
 
-export function renderBoard() {
+export const renderBoard = () => {
   const app = document.getElementById('app');
-  app.innerHTML = ''; 
+  app.innerHTML = '';
 
-  const state = getState();
+  const { columns } = getState();
 
-  state.columns.forEach(column => {
-    const columntElement = renderColumn(column);
-    app.appendChild(columntElement);
+  columns.forEach(column => {
+    const columnElement = renderColumn(column);
+    app.appendChild(columnElement);
   });
-}
+};
