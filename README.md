@@ -15,12 +15,12 @@ Mini-Kanban is a simple SPA for task management with three columns: To Do | In P
 4. Interactively add/edit cards and test drag-and-drop functionality.
 
 **Project Structure:**
-index.html
-styles.css
-main.js
-src/
-├─ board.js
-├─ card.js
-├─ column.js
-├─ state.js
-└─ utils.js
+- index.html
+- styles.css
+- main.js
+- src/
+  - board.js
+  - card.js
+  - column.js
+  - state.js
+  - utils.js
